@@ -191,12 +191,12 @@ function getString(messages, type) {
     var str = "";
     if (IsJsonString(messages) && isNaN(messages)) {
         var template = JSON.parse(messages);
-        if (template && template.payload.template_type === "button") {
+        if (template && template.payload &&template.payload.template_type === "button") {
             str = str + "Bot: " + template.payload.text + "\n";
             template.payload.buttons.forEach(function (button) {
                 str = str + " " + button.title + "\n";
             });
-        } else if (template && template.payload.template_type === "live_agent") {
+        } else if (template && template.payload && template.payload.template_type === "live_agent") {
             str = str + "Bot: " + template.payload.text + "\n";
         } else {
         }
